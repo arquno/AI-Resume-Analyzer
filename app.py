@@ -69,17 +69,84 @@ def upload_file():
             score = 100
 
         return f"""
+        <html>
+
+        <head>
+
+        <style>
+
+        body {{
+
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+
+            padding: 30px;
+        }}
+
+        .container {{
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+
+            max-width: 800px;
+
+            margin: auto;
+        }}
+
+        .score {{
+
+            color: green;
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }}
+
+        .skills {{
+
+            color: blue;
+        }}
+
+        .missing {{
+
+            color: red;
+        }}
+
+        pre {{
+
+            background: #eee;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            white-space: pre-wrap;
+        }}
+
+        </style>
+
+        </head>
+
+        <body>
+
+        <div class="container">
+
         <h1>Resume Analysis Result</h1>
 
-        <h2>ATS Score: {score}/100</h2>
+        <h2 class="score">ATS Score: {score}/100</h2>
 
-        <h2>Detected Skills:</h2>
+        <h2 class="skills">Detected Skills:</h2>
 
         <ul>
             {''.join(f'<li>{skill}</li>' for skill in found_skills)}
         </ul>
 
-        <h2>Missing Skills:</h2>
+        <h2 class="missing">Missing Skills:</h2>
 
         <ul>
             {''.join(f'<li>{skill}</li>' for skill in missing_skills)}
@@ -88,6 +155,12 @@ def upload_file():
         <h2>Extracted Resume Text:</h2>
 
         <pre>{text}</pre>
+
+        </div>
+
+        </body>
+
+        </html>
         """
 
     return "No file uploaded"
