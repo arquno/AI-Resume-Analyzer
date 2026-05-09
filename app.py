@@ -62,6 +62,26 @@ def upload_file():
         for skill in required_skills:
             if skill not in found_skills:
                 missing_skills.append(skill)
+        # Suggestions for missing skills
+
+        suggestions = []
+
+        for skill in missing_skills:
+
+            if skill == "Flask":
+                suggestions.append("Learn Flask for backend development.")
+
+            elif skill == "AWS":
+                suggestions.append("Build cloud projects using AWS.")
+
+            elif skill == "SQL":
+                suggestions.append("Practice database queries using SQL.")
+
+            elif skill == "Machine Learning":
+                suggestions.append("Work on ML projects using Python.")
+
+            elif skill == "Python":
+                suggestions.append("Strengthen Python programming fundamentals.")
 
         score = len(found_skills) * 10
 
@@ -151,7 +171,12 @@ def upload_file():
         <ul>
             {''.join(f'<li>{skill}</li>' for skill in missing_skills)}
         </ul>
+        <h2>Suggestions:</h2>
 
+        <ul>
+            {''.join(f'<li>{tip}</li>' for tip in suggestions)}
+        </ul>
+        
         <h2>Extracted Resume Text:</h2>
 
         <pre>{text}</pre>
