@@ -89,63 +89,76 @@ def upload_file():
             score = 100
 
         return f"""
+
         <html>
 
         <head>
 
+        <title>AI Resume Analyzer</title>
+
         <style>
 
         body {{
-
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-
-            padding: 30px;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 40px;
         }}
 
         .container {{
 
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 15px;
-
-            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
-
-            max-width: 800px;
-
+            max-width: 900px;
             margin: auto;
+
+            background: rgba(255,255,255,0.08);
+
+            border-radius: 20px;
+
+            padding: 40px;
+
+            box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
         }}
 
         .score {{
 
-            color: green;
-
-            font-size: 28px;
+            font-size: 60px;
 
             font-weight: bold;
+
+            color: {'#22c55e' if score >= 70 else '#facc15' if score >= 40 else '#ef4444'};
         }}
 
-        .skills {{
+        .section {{
 
-            color: blue;
+            margin-top: 30px;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.08);
         }}
 
-        .missing {{
+        h1 {{
+            text-align: center;
+        }}
 
-            color: red;
+        ul {{
+            padding-left: 20px;
+        }}
+
+        li {{
+            margin-bottom: 10px;
         }}
 
         pre {{
+            white-space: pre-wrap;
 
-            background: #eee;
+            background: rgba(0,0,0,0.3);
 
-            padding: 15px;
+            padding: 20px;
 
             border-radius: 10px;
-
-            white-space: pre-wrap;
         }}
 
         </style>
@@ -156,38 +169,61 @@ def upload_file():
 
         <div class="container">
 
-        <h1>Resume Analysis Result</h1>
+        <h1>🚀 AI Resume Analyzer</h1>
 
-        <h2 class="score">ATS Score: {score}/100</h2>
+        <div class="section">
 
-        <h2 class="skills">Detected Skills:</h2>
+        <h2>ATS SCORE</h2>
+
+        <div class="score">{score}/100</div>
+
+        </div>
+
+        <div class="section">
+
+        <h2>✅ Detected Skills</h2>
 
         <ul>
             {''.join(f'<li>{skill}</li>' for skill in found_skills)}
         </ul>
 
-        <h2 class="missing">Missing Skills:</h2>
+        </div>
+
+        <div class="section">
+
+        <h2>❌ Missing Skills</h2>
 
         <ul>
             {''.join(f'<li>{skill}</li>' for skill in missing_skills)}
         </ul>
-        <h2>Suggestions:</h2>
+
+        </div>
+
+        <div class="section">
+
+        <h2>💡 Suggestions</h2>
 
         <ul>
             {''.join(f'<li>{tip}</li>' for tip in suggestions)}
         </ul>
-        
-        <h2>Extracted Resume Text:</h2>
+
+        </div>
+
+        <div class="section">
+
+        <h2>📄 Extracted Resume Text</h2>
 
         <pre>{text}</pre>
+
+        </div>
 
         </div>
 
         </body>
 
         </html>
-        """
 
+        """
     return "No file uploaded"
 
 
