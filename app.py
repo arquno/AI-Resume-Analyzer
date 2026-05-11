@@ -128,6 +128,43 @@ def upload_file():
             color: {'#22c55e' if score >= 70 else '#facc15' if score >= 40 else '#ef4444'};
         }}
 
+        .progress-container {{
+
+        width: 100%;
+
+        height: 30px;
+
+        background: rgba(255,255,255,0.2);
+
+        border-radius: 20px;
+
+        margin-top: 20px;
+
+        overflow: hidden;
+    }}
+
+    .progress-bar {{
+
+        height: 100%;
+
+        border-radius: 20px;
+
+        background: linear-gradient(90deg, #22c55e, #4ade80);
+
+        animation: fillBar 2s ease;
+    }}
+
+        @keyframes fillBar {{
+
+            from {{
+                width: 0%;
+            }}
+
+            to {{
+                width: 100%;
+            }}
+        }}
+
         .section {{
 
             margin-top: 30px;
@@ -176,6 +213,21 @@ def upload_file():
         <h2>ATS SCORE</h2>
 
         <div class="score">{score}/100</div>
+
+        <div class="progress-container">
+
+            <div class="progress-bar" style="width:{score}%;">
+            </div>
+
+        </div>
+
+        <h3>
+        {
+            "🟢 Excellent Resume!" if score >= 80 else
+            "🟡 Good Resume But Needs Improvement!" if score >= 50 else
+            "🔴 Weak Resume - Improve Skills!"
+        }
+        </h3>
 
         </div>
 
