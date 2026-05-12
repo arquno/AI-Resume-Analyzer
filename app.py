@@ -13,6 +13,8 @@ def upload_file():
 
     file = request.files['resume']
 
+    job_description = request.form['job_description']
+
     if file:
 
         pdf_reader = PyPDF2.PdfReader(file)
@@ -41,11 +43,17 @@ def upload_file():
 
         found_skills = []
 
+        matched_skills = []
+
         # Check skills in resume
         for skill in skills:
 
             if skill.lower() in text.lower():
+
                 found_skills.append(skill)
+
+            if skill.lower() in job_description.lower():
+                matched_skills.append(skill)
 
         # ATS Score Calculation
         # Required skills for target job
@@ -82,6 +90,9 @@ def upload_file():
 
             elif skill == "Python":
                 suggestions.append("Strengthen Python programming fundamentals.")
+        match_percentage = int(
+            (len(matched_skills) / len(required_skills)) * 100
+        )
 
         score = len(found_skills) * 10
 
@@ -211,6 +222,8 @@ def upload_file():
         <div class="section">
 
         <h2>ATS SCORE</h2>
+
+        <h3>Job Match: {match_percentage}%</h3>
 
         <div class="score">{score}/100</div>
 

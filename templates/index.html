@@ -76,12 +76,21 @@
 
         <p>Upload your resume and get ATS analysis</p>
 
+
+
         <form action="/upload" method="POST" enctype="multipart/form-data">
 
             <input type="file" name="resume" accept=".pdf">
 
-            <br>
+            <br><br>
+                    <textarea 
+            name="job_description"
+            placeholder="Paste Job Description Here..."
+            rows="8"
+            style="width:100%; padding:15px; border-radius:10px; margin-top:20px;">
+        </textarea>
 
+        <br><br>
             <button type="submit">Analyze Resume</button>
 
         </form>
